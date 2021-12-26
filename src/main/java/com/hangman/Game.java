@@ -45,9 +45,11 @@ public class Game {
     public void startGame() {
 
         fillMassive(); //наполнит массив
-        //Window window = new Window(this);
-        //window.makeWindow();//создали окно, пока тестовая фича для проб гуя с ней чуть позже разберемся.
+        Window window = new Window(this);
+        window.makeWindow();//создали окно, пока тестовая фича для проб гуя с ней чуть позже разберемся.
 
+        //MapPrinter maptest = new MapPrinter(this);
+        //maptest.printMap();
 
 
         enum testenum {
