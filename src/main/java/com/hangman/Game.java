@@ -9,7 +9,7 @@ public class Game {
 
      List<Item> allItems = new ArrayList<>();
      List<Item> inventoryItems = new ArrayList<>();
-
+    List<Item> onGroungLoc = new ArrayList<>();
 
 
     static String wkonsol;

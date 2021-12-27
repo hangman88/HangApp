@@ -4,6 +4,8 @@ package main.java.com.hangman;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Window extends JFrame{
 
@@ -121,7 +123,8 @@ public class Window extends JFrame{
                     public void actionPerformed(ActionEvent e) {
                         System.out.println("Вы спускаетесь ниже");
                         f1.setText("вы спускаетесь ниже");
-                        game.inventoryItems.add(game.allItems.get(1)); //0 а размер массива 1
+                        //game.inventoryItems.add(game.allItems.get(1)); //0 а размер массива 1
+                        game.onGroungLoc.add(game.allItems.get(1));
                     } });
 
 
@@ -141,13 +144,54 @@ public class Window extends JFrame{
 
 
 
+                List<JButton> onGroundBut = new ArrayList<>();
+
+                for(int i = 0; i < 4; i++) {
+                    onGroundBut.add(new JButton("it" + (i + 1)));
+                    framuga.add(onGroundBut.get(i));
+                    onGroundBut.get(i).setBounds((80*(i)),150,80,80);
+                    int lisi = i;
+                    onGroundBut.get(i).addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            //System.out.println("Вы держите в руках "+window.game.inventoryItems.get(i).descr);
+
+                            game.inventoryItems.add(game.allItems.get(1)); //0 а размер массива 1
+                        }
+                    });
+                    if (game.onGroungLoc.size() < (i+1)) {
+                        onGroundBut.get(i).setEnabled(false);
+                        onGroundBut.get(i).setText("Пусто");
 
 
+                    } else { // если предмета нет, то сообщит о том, что его нет.
+                        onGroundBut.get(i).setEnabled(true);
+                        onGroundBut.get(i).setText(game.onGroungLoc.get(i).name);
+                    }
+
+                };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
                 String[] columnNames = {"col1", "col2", "col3", "col4", "col5"};
                 JTable tablica = new JTable(cellData, columnNames);
                 tablica.setBounds(30,30,600,50);
                 framuga.add(tablica);
-
+*/
 
 
 
