@@ -9,7 +9,7 @@ public class Game {
 
      List<Item> allItems = new ArrayList<>();
      List<Item> inventoryItems = new ArrayList<>();
-
+     List<Item> onGroungLoc = new ArrayList<>();
 
 
     static String wkonsol;
@@ -28,7 +28,7 @@ public class Game {
         allItems.add(new Item (8, "Зеркальце", "Блестящая безделушка"));
         allItems.add(new Keys(9, "Ключ-карта", "Магнитная ключ карта открывает электронный замок", "Дверь в лабораторию"));
 
-        inventoryItems.add(allItems.get(1)); //0 а размер массива 1
+        //inventoryItems.add(allItems.get(1)); //0 а размер массива 1
        // inventoryItems.add(allItems.get(2)); //1 а размер массива 2
         //inventoryItems.add(allItems.get(3)); //2 а размер массива 3
        // inventoryItems.add(allItems.get(4)); //3 а размер массива 4
@@ -36,6 +36,10 @@ public class Game {
         //inventoryItems.add(allItems.get(6)); //5 а размер массива 6
         //inventoryItems.add(allItems.get(7)); //6 а размер массива 7
         //inventoryItems.add(allItems.get(8)); //7 а размер массива 8
+
+
+        //onGroungLoc.add(new Item (1, "Ключ", "Ржавый ключ на большом кольце. Такой может открывать что угодно."));
+        //onGroungLoc.add(new Item (1, "Ключ", "Ржавый ключ на большом кольце. Такой может открывать что угодно."));
 
     }
 

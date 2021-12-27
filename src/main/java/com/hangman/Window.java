@@ -4,31 +4,35 @@ package main.java.com.hangman;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Window extends JFrame{
 
-    public int random_number1;
 
-    public Game game; //это создали, чтобы окно, создаваемое в Game.java  понимало, с чем работает.
+    public List<JButton> onGroundBut = new ArrayList<>();
+    public Game game; //это создали, чтобы окно, создаваемое в Game.java понимало, с чем работает.
 
-    Window(Game game) {//создали конструктор, приняли гейм гейм и куда-то надо его сохранить, в ту переменную, что там выше
+    Window(Game game) {//создали конструктор, приняли Гей, гейм и куда-то надо его сохранить, в ту переменную, что там выше
         this.game = game;
     }
 
             public void makeWindow () {
+
                 Inventory inventory = new Inventory(this);
 
-                JFrame framuga = new JFrame("Тестовая рамка");  //мы создаем рамку, которая и будет отображаться при запуске нашей игры
-                framuga.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //устанавливаем операцию, которая будет происходить при нажатии на крестик. EXIT_ON_CLOSE — выйти из программы
-                //framuga.setExtendedState(JFrame.MAXIMIZED_BOTH);         //устанавливаем нашей рамке максимальные размеры
-                //framuga.setUndecorated(true); //убираем декорации(кнопки свернуть, закрыть, уменьшить/увеличить и т.п.), т.е. делаем игру на весь экран.
 
-                framuga.setSize(800, 600); //установит определенный размер рамки
-                framuga.setResizable(false); //false чтобы нельзя было бы поменять размеры рамки, true -можно
+                JFrame mainFrame = new JFrame("Тестовая рамка");  //мы создаем рамку, которая и будет отображаться при запуске нашей игры
+                mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //Устанавливаем операцию, которая будет происходить при нажатии на крестик. EXIT_ON_CLOSE — выйти из программы
+                //mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);         //устанавливаем нашей рамке максимальные размеры
+                //mainFrame.setUndecorated(true); //убираем декорации(кнопки свернуть, закрыть, уменьшить/увеличить и т.п.), т.е. делаем игру на весь экран.
 
-                //framuga.setLayout(new GridLayout());
-                framuga.setLayout(null);
-                //framuga.add(new Main()); // добавит
+                mainFrame.setSize(800, 600); //установит определенный размер рамки
+                mainFrame.setResizable(false); //false чтобы нельзя было бы поменять размеры рамки, true -можно
+
+                //mainFrame.setLayout(new GridLayout());
+                mainFrame.setLayout(null);
+                //mainFrame.add(new Main()); // добавит
 
 
 
@@ -57,15 +61,15 @@ public class Window extends JFrame{
                 lu.setBounds(700,400,50,50);
                 ld.setBounds(600,500,50,50);
 
-                framuga.add(x);
-                framuga.add(u);
-                framuga.add(d);
-                framuga.add(l);
-                framuga.add(r);
-                framuga.add(lu);
-                framuga.add(ld);
+                mainFrame.add(x);
+                mainFrame.add(u);
+                mainFrame.add(d);
+                mainFrame.add(l);
+                mainFrame.add(r);
+                mainFrame.add(lu);
+                mainFrame.add(ld);
 
-                framuga.add(f1);
+                mainFrame.add(f1);
 
 
 
@@ -114,6 +118,8 @@ public class Window extends JFrame{
                     public void actionPerformed(ActionEvent e) {
                         System.out.println("Вы поднимаетесь выше");
                         f1.setText("вы поднимаетесь выше");
+                        game.inventoryItems.add(game.allItems.get(2)); //0 а размер массива 1
+                        game.onGroungLoc.add(game.allItems.get(2));
                     } });
 
                 ld.addActionListener(new ActionListener() {
@@ -122,38 +128,106 @@ public class Window extends JFrame{
                         System.out.println("Вы спускаетесь ниже");
                         f1.setText("вы спускаетесь ниже");
                         game.inventoryItems.add(game.allItems.get(1)); //0 а размер массива 1
+                        game.onGroungLoc.add(game.allItems.get(1));
+                        checkGround();
                     } });
 
 
 
-                //JLabel labela = new JLabel("Текст какой-то");
-                //labela.setBounds(10,10,150,50);
-                //framuga.add(labela);
-                ////framuga.getContentPane().add(labela);
 
-
-
-
-                Object[][] cellData = {
-                        {game.allItems.get(2).name, game.allItems.get(1).name, game.allItems.get(3).name, "row1-col2", "row1-col2"},
-                        };
+                mainFrame.setVisible(true);
 
 
 
 
 
+                for(int i = 0; i < 4; i++) {
+                    onGroundBut.add(new JButton("it" + (i + 1)));
+                    mainFrame.add(onGroundBut.get(i));
+                    onGroundBut.get(i).setBounds((80*(i)),150,80,80);
+                    System.out.println("создал кнопку "+i);
 
-                String[] columnNames = {"col1", "col2", "col3", "col4", "col5"};
-                JTable tablica = new JTable(cellData, columnNames);
-                tablica.setBounds(30,30,600,50);
-                framuga.add(tablica);
+                    int lisi = i;
+                    onGroundBut.get(i).addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+
+
+                            game.inventoryItems.add(game.onGroungLoc.get(lisi)); //0, а размер массива 1
+                            System.out.println("Вы подняли "+game.onGroungLoc.get(lisi).name);
+                            game.onGroungLoc.remove(lisi); //0, а размер массива 1
+                            checkGround();
+
+                        }
+                    });
+
+
+                }
 
 
 
 
 
 
-                framuga.setVisible(true);
+/*
+                while (true) {
+                    if (game.onGroungLoc.size() < (1)) {
+                        onGroundBut.get(0).setEnabled(false);
+                        onGroundBut.get(0).setText("Пусто");
+
+
+
+                    } else { // если предмета нет, то сообщит о том, что его нет.
+                        onGroundBut.get(0).setEnabled(true);
+                        onGroundBut.get(0).setText(game.onGroungLoc.get(0).name);
+                    }
+
+                    if (game.onGroungLoc.size() < (2)) {
+                        onGroundBut.get(1).setEnabled(false);
+                        onGroundBut.get(1).setText("Пусто");
+
+
+                    } else { // если предмета нет, то сообщит о том, что его нет.
+                        onGroundBut.get(1).setEnabled(true);
+                        onGroundBut.get(1).setText(game.onGroungLoc.get(1).name);
+                    }
+
+                    if (game.onGroungLoc.size() < (3)) {
+                        onGroundBut.get(2).setEnabled(false);
+                        onGroundBut.get(2).setText("Пусто");
+
+
+                    } else { // если предмета нет, то сообщит о том, что его нет.
+                        onGroundBut.get(2).setEnabled(true);
+                        onGroundBut.get(2).setText(game.onGroungLoc.get(2).name);
+                    }
+
+                    if (game.onGroungLoc.size() < (4)) {
+                        onGroundBut.get(3).setEnabled(false);
+                        onGroundBut.get(3).setText("Пусто");
+
+
+                    } else { // если предмета нет, то сообщит о том, что его нет.
+                        onGroundBut.get(3).setEnabled(true);
+                        onGroundBut.get(3).setText(game.onGroungLoc.get(3).name);
+                    }
+                }
+*/
+
+                checkGround();
+
+            }
+
+            public void checkGround() {
+                    for (int i = 0; i < 4; i++) {
+                        if (game.onGroungLoc.size() < (i+1)) {
+                            onGroundBut.get(i).setEnabled(false);
+                            onGroundBut.get(i).setText("Пусто");
+                        } else { // если предмета нет, то сообщит о том, что его нет.
+                            onGroundBut.get(i).setEnabled(true);
+                            onGroundBut.get(i).setText(game.onGroungLoc.get(i).name);
+                        }
+                    }
             }
 
 }
