@@ -78,7 +78,7 @@ public class Inventory extends JFrame{
             @Override
             public void windowLostFocus(WindowEvent e) {
                 System.out.println("Lost!");
-                inventoryBag.dispose();
+                //inventoryBag.dispose();  //закроет окно инвентаря при потере фокуса
                 checkInventory();
 
             }

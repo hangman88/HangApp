@@ -8,11 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Window extends JFrame{
-
-
     public List<JButton> onGroundBut = new ArrayList<>();
-    public Game game; //это создали, чтобы окно, создаваемое в Game.java понимало, с чем работает.
 
+
+    public Game game; //это создали, чтобы окно, создаваемое в Game.java понимало, с чем работает.
     Window(Game game) {//создали конструктор, приняли Гей, гейм и куда-то надо его сохранить, в ту переменную, что там выше
         this.game = game;
     }
@@ -35,10 +34,6 @@ public class Window extends JFrame{
                 //mainFrame.add(new Main()); // добавит
 
 
-
-
-
-                System.out.println("Окно создано");
 
                 JTextField f1 = new JTextField(1);
                 f1.setBounds(10,350,750,30);
@@ -77,13 +72,8 @@ public class Window extends JFrame{
                 x.addActionListener(new ActionListener() { //кнопка действия
                                               @Override
                                               public void actionPerformed(ActionEvent e) {
-                        System.out.println("РАБОТАЕТ КНОПКА");
-                        //b.setEnabled(false);
                                                   inventory.openInventory();
 
-
-                        //int random_number1 = 0 + (int) (Math.random() * 10); // Генерация 1-го числа от 0 до 10
-                        //JOptionPane.showMessageDialog(null,  "Случайное число: "+random_number1 ); //вывод сообщения информационного
                         f1.setText(Game.wkonsol);
 
                                               } });
@@ -118,8 +108,6 @@ public class Window extends JFrame{
                     public void actionPerformed(ActionEvent e) {
                         System.out.println("Вы поднимаетесь выше");
                         f1.setText("вы поднимаетесь выше");
-                        game.inventoryItems.add(game.allItems.get(2)); //0 а размер массива 1
-                        game.onGroungLoc.add(game.allItems.get(2));
                     } });
 
                 ld.addActionListener(new ActionListener() {
@@ -134,92 +122,37 @@ public class Window extends JFrame{
 
 
 
-
                 mainFrame.setVisible(true);
 
 
 
 
-
-                for(int i = 0; i < 4; i++) {
+                for(int i = 0; i < 8; i++) {
                     onGroundBut.add(new JButton("it" + (i + 1)));
                     mainFrame.add(onGroundBut.get(i));
-                    onGroundBut.get(i).setBounds((80*(i)),150,80,80);
+                    onGroundBut.get(i).setBounds((70+80*(i)),250,80,80);
                     System.out.println("создал кнопку "+i);
 
                     int lisi = i;
                     onGroundBut.get(i).addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-
-
                             game.inventoryItems.add(game.onGroungLoc.get(lisi)); //0, а размер массива 1
                             System.out.println("Вы подняли "+game.onGroungLoc.get(lisi).name);
                             game.onGroungLoc.remove(lisi); //0, а размер массива 1
                             checkGround();
-
                         }
                     });
-
-
                 }
 
 
-
-
-
-
-/*
-                while (true) {
-                    if (game.onGroungLoc.size() < (1)) {
-                        onGroundBut.get(0).setEnabled(false);
-                        onGroundBut.get(0).setText("Пусто");
-
-
-
-                    } else { // если предмета нет, то сообщит о том, что его нет.
-                        onGroundBut.get(0).setEnabled(true);
-                        onGroundBut.get(0).setText(game.onGroungLoc.get(0).name);
-                    }
-
-                    if (game.onGroungLoc.size() < (2)) {
-                        onGroundBut.get(1).setEnabled(false);
-                        onGroundBut.get(1).setText("Пусто");
-
-
-                    } else { // если предмета нет, то сообщит о том, что его нет.
-                        onGroundBut.get(1).setEnabled(true);
-                        onGroundBut.get(1).setText(game.onGroungLoc.get(1).name);
-                    }
-
-                    if (game.onGroungLoc.size() < (3)) {
-                        onGroundBut.get(2).setEnabled(false);
-                        onGroundBut.get(2).setText("Пусто");
-
-
-                    } else { // если предмета нет, то сообщит о том, что его нет.
-                        onGroundBut.get(2).setEnabled(true);
-                        onGroundBut.get(2).setText(game.onGroungLoc.get(2).name);
-                    }
-
-                    if (game.onGroungLoc.size() < (4)) {
-                        onGroundBut.get(3).setEnabled(false);
-                        onGroundBut.get(3).setText("Пусто");
-
-
-                    } else { // если предмета нет, то сообщит о том, что его нет.
-                        onGroundBut.get(3).setEnabled(true);
-                        onGroundBut.get(3).setText(game.onGroungLoc.get(3).name);
-                    }
-                }
-*/
 
                 checkGround();
 
             }
 
             public void checkGround() {
-                    for (int i = 0; i < 4; i++) {
+                    for (int i = 0; i < 8; i++) {
                         if (game.onGroungLoc.size() < (i+1)) {
                             onGroundBut.get(i).setEnabled(false);
                             onGroundBut.get(i).setText("Пусто");
