@@ -23,7 +23,6 @@ public class ItemCreator {
             game.allItems.add(new Item (8, "Зеркальце", "Блестящая безделушка"));
             game.allItems.add(new Keys(9, "Ключ-карта", "Магнитная ключ карта открывает электронный замок", "Дверь в лабораторию"));
 
-
         }
 
 

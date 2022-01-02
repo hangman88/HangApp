@@ -2,25 +2,33 @@ package main.java.com.hangman;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
 
+    public MapPrinter mapPrinter;
 
-     List<Item> allItems = new ArrayList<>(); //массив Все предметы
+     public List<Item> allItems = new ArrayList<>(); //массив Все предметы
 
 
 
-    List<Place> somePlace = new ArrayList<>();
+    public List<Place> somePlace = new ArrayList<>();
     //List<List<Place>> allPlaces = new ArrayList<>(); //массив Все локации
 
-     List<Item> inventoryItems = new ArrayList<>(); //массив предметы инвентаря
-     List<Item> onGroungLoc = new ArrayList<>();// ВРЕМЕННЫЙ массив предметы на земле локации (будет перенесён и привязан к конкретной локации)
-
-
-
+     public List<Item> inventoryItems = new ArrayList<>(); //массив предметы инвентаря
+     public List<Item> onGroungLoc = new ArrayList<>();// ВРЕМЕННЫЙ массив предметы на земле локации (будет перенесён и привязан к конкретной локации)
 
     static String wkonsol;
+
+
+    String[][] data1={
+            {"...","...","...","...","...","...","..."},
+            {"...","...","...","...","...","..╕","..╕"},
+            {"...","...",".◘.","...","...","...","..╕"},
+            {"...","...","...","...","...","..╕","..╕"},
+            {"...","...","...","...","...","..╕","..."},
+            {"...","...","..Æ","...","...","...","..."}};
 
 
 
@@ -29,8 +37,8 @@ public class Game {
 
 
         // ----------Создаем все предметы и заполняем ними массив "все предметы"
-        ItemCreator itemCreator = new ItemCreator((this));
-        itemCreator.fillItemMassive();
+         // ItemCreator itemCreator = new ItemCreator((this));
+        new ItemCreator(this).fillItemMassive();
 
         // ----------Создаем все локации и заполняем ними массив "все локации"
         PlaceCreator placeCreator = new PlaceCreator((this));
@@ -39,6 +47,15 @@ public class Game {
         // ----------Создаем основное окно игры, в котором всё происходит
         Window window = new Window(this);
         window.makeWindow();
+
+        // ----------Создаем тестовую карту в консоли
+        mapPrinter = new MapPrinter(this);
+        mapPrinter.printMap();
+
+
+
+
+
 
 
             // тут бесконечный цикл, которым я "слушаю" введенное в консоль и реагирую в зависимости от того, что было введено.

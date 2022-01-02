@@ -25,7 +25,7 @@ public class Inventory extends JFrame{
             inventoryBag.setSize(420, 270); //установит определенный размер рамки
             inventoryBag.setResizable(false); //false чтобы нельзя было бы поменять размеры рамки, true -можно
             inventoryBag.setLayout(null);
-            System.out.println("ИНвентарь открыт");
+
 
 
             for (int i = 0; i < 4; i++) {
@@ -36,7 +36,6 @@ public class Inventory extends JFrame{
                 itBtn.get(i).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        //System.out.println("Вы держите в руках "+window.game.inventoryItems.get(i).descr);
                         JOptionPane.showMessageDialog(null, "У вас в руках: " + window.game.inventoryItems.get(lisi).name + " и это " + window.game.inventoryItems.get(lisi).descr);
                         checkInventory();
                     }

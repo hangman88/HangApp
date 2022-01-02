@@ -16,10 +16,12 @@ public class Window extends JFrame{
         this.game = game;
     }
 
+
+
+
             public void makeWindow () {
 
                 Inventory inventory = new Inventory(this);
-
 
                 JFrame mainFrame = new JFrame("Тестовая рамка");  //мы создаем рамку, которая и будет отображаться при запуске нашей игры
                 mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //Устанавливаем операцию, которая будет происходить при нажатии на крестик. EXIT_ON_CLOSE — выйти из программы
@@ -83,6 +85,11 @@ public class Window extends JFrame{
                     public void actionPerformed(ActionEvent e) {
                         System.out.println("Вы идёте на север");
                         f1.setText("вы идёте на север");
+                            game.data1[2][2] = ".x.";
+                            game.mapPrinter.printMap();
+
+
+
                     } });
                 d.addActionListener(new ActionListener() {
                     @Override
@@ -115,7 +122,7 @@ public class Window extends JFrame{
                     public void actionPerformed(ActionEvent e) {
                         System.out.println("Вы спускаетесь ниже");
                         f1.setText("вы спускаетесь ниже");
-                        game.inventoryItems.add(game.allItems.get(1)); //0 а размер массива 1
+                        //game.inventoryItems.add(game.allItems.get(1)); // эта строчка добавляла предмет в инвентарь для теста. удалить чуть позже
                         game.onGroungLoc.add(game.allItems.get(1));
                         checkGround();
                     } });
@@ -131,7 +138,7 @@ public class Window extends JFrame{
                     onGroundBut.add(new JButton("it" + (i + 1)));
                     mainFrame.add(onGroundBut.get(i));
                     onGroundBut.get(i).setBounds((70+80*(i)),250,80,80);
-                    System.out.println("создал кнопку "+i);
+
 
                     int lisi = i;
                     onGroundBut.get(i).addActionListener(new ActionListener() {

@@ -14,46 +14,21 @@ public class MapPrinter {
 
 
 
-
-    //game.inventoryItems.get(lisi).name
-
     public void printMap () {
-        String[][] data1={
-                {"...","...","...","...","...","...","..."},
-                {"...","...","...","...","...","..╕","..╕"},
-                {"...","...",".◘.","...","...","...","..╕"},
-                {"...","...","...","...","...","..╕","..╕"},
-                {"...","...","...","...","...","..╕","..."},
-                {"...","...","..Æ","...","...","...","..."}};
+
         int i, m;
-        for(m=0;m < data1.length;m++) {
-            for (i = 0; i < data1[m].length; i++) {
-                System.out.print("|" + data1[m][i]);
+        for(m=0;m < game.data1.length;m++) {
+            for (i = 0; i < game.data1[m].length; i++) {
+                System.out.print("|" + game.data1[m][i]);
             }
             System.out.print("|");
             System.out.println();
         }
+
         System.out.println("---------------------");
     }
 
 
 
-
-       public void printoldMap () {
-           String[][] data1={
-                   {"1.1","1.2","1.3","...",".1."},
-                   {"2.1","2.2","...","...","..."},
-                   {"3.1","3.2","...","..."},
-                   {"4.1","4.2","...","...","...","...","..."}};
-           int i, m;
-           for(m=0;m < data1.length;m++) {
-                   for (i = 0; i < data1[m].length; i++) {
-                       System.out.print("|" + data1[m][i]);
-                   }
-               System.out.print("|");
-               System.out.println();
-           }
-           System.out.println("---------------------");
-       }
 }
 
