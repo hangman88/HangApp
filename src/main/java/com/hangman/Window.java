@@ -16,7 +16,8 @@ public class Window extends JFrame{
         this.game = game;
     }
 
-
+    int playerPositionX=1;
+    int playerPositionY=1;
 
 
             public void makeWindow () {
@@ -85,8 +86,15 @@ public class Window extends JFrame{
                     public void actionPerformed(ActionEvent e) {
                         System.out.println("Вы идёте на север");
                         f1.setText("вы идёте на север");
-                            game.data1[2][2] = ".x.";
-                            game.mapPrinter.printMap();
+
+
+                        int x=playerPositionX;
+                        int y=playerPositionY;
+                        game.data1[y][x] = "...";
+                        game.data1[y-1][x] = ".x.";
+                        y--;
+                        playerPositionY=y;
+                        game.mapPrinter.printMap();
 
 
 
@@ -96,18 +104,48 @@ public class Window extends JFrame{
                     public void actionPerformed(ActionEvent e) {
                         System.out.println("Вы идёте на юг");
                         f1.setText("вы идёте на юг");
+
+                        int x=playerPositionX;
+                        int y=playerPositionY;
+                        game.data1[y][x] = "...";
+                        game.data1[y+1][x] = ".x.";
+                        y++;
+                        playerPositionY=y;
+                        game.mapPrinter.printMap();
+
+
                     } });
                 l.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         System.out.println("Вы идёте на восток");
                         f1.setText("вы идёте на восток");
+
+                        int x=playerPositionX;
+                        int y=playerPositionY;
+                        game.data1[y][x] = "...";
+                        game.data1[y][x-1] = ".x.";
+                        x--;
+                        playerPositionX=x;
+                        game.mapPrinter.printMap();
+
+
+
+
+
                     } });
                 r.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         System.out.println("Вы идёте на запад");
                         f1.setText("вы идёте на запад");
+                        int x=playerPositionX;
+                        int y=playerPositionY;
+                        game.data1[y][x] = "...";
+                        game.data1[y][x+1] = ".x.";
+                        x++;
+                        playerPositionX=x;
+                        game.mapPrinter.printMap();
                     } });
 
                 lu.addActionListener(new ActionListener() {
