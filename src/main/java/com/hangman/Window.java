@@ -16,8 +16,8 @@ public class Window extends JFrame{
         this.game = game;
     }
 
-    int playerPositionX=1;
-    int playerPositionY=1;
+    //int playerPositionX=1;
+    //int playerPositionY=1;
 
 
             public void makeWindow () {
@@ -77,75 +77,92 @@ public class Window extends JFrame{
                                               public void actionPerformed(ActionEvent e) {
                                                   inventory.openInventory();
 
-                        f1.setText(Game.wkonsol);
+
+                                                  f1.setText(Game.wkonsol);
 
                                               } });
 
                 u.addActionListener(new ActionListener() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
+                    public void actionPerformed(ActionEvent e) throws ArrayIndexOutOfBoundsException {
+                        try{
+                        //int x=playerPositionX;
+                        //int y=playerPositionY;
+                        //game.data1[y-1][x] = ".x.";
+                        //y--;
+
+                        game.playerPositionY--;
+                        game.mapPrinter.printMap();
+                        //playerPositionY=y;
                         System.out.println("Вы идёте на север");
                         f1.setText("вы идёте на север");
 
-
-                        int x=playerPositionX;
-                        int y=playerPositionY;
-                        game.data1[y][x] = "...";
-                        game.data1[y-1][x] = ".x.";
-                        y--;
-                        playerPositionY=y;
-                        game.mapPrinter.printMap();
-
-
+                        } catch (ArrayIndexOutOfBoundsException ext) {
+                            System.out.println("Вы не можете идти в ту сторону");
+                        }
 
                     } });
                 d.addActionListener(new ActionListener() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
-                        System.out.println("Вы идёте на юг");
-                        f1.setText("вы идёте на юг");
+                    public void actionPerformed(ActionEvent e) throws ArrayIndexOutOfBoundsException {
 
-                        int x=playerPositionX;
-                        int y=playerPositionY;
-                        game.data1[y][x] = "...";
-                        game.data1[y+1][x] = ".x.";
-                        y++;
-                        playerPositionY=y;
-                        game.mapPrinter.printMap();
+                        try {
+                            game.playerPositionY++;
+                            game.mapPrinter.printMap();
+                            //int x = game.playerPositionX;
+                            //int y = game.playerPositionY;
+                            //y++;
+                            //game.playerPositionY = y;
+
+
+                            System.out.println("Вы идёте на юг");
+                            f1.setText("вы идёте на юг");
+
+                        } catch (ArrayIndexOutOfBoundsException ext) {
+                            System.out.println("Вы не можете идти в ту сторону");
+                        }
 
 
                     } });
                 l.addActionListener(new ActionListener() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
-                        System.out.println("Вы идёте на восток");
-                        f1.setText("вы идёте на восток");
+                    public void actionPerformed(ActionEvent e) throws ArrayIndexOutOfBoundsException {
 
-                        int x=playerPositionX;
-                        int y=playerPositionY;
-                        game.data1[y][x] = "...";
-                        game.data1[y][x-1] = ".x.";
-                        x--;
-                        playerPositionX=x;
+                        try {
+                        //int x=playerPositionX;
+                        //int y=playerPositionY;
+                        //game.data1[y][x] = "...";
+                        //game.data1[y][x-1] = ".x.";
+                        game.playerPositionX--;
                         game.mapPrinter.printMap();
+                        //playerPositionX=x;
+                            System.out.println("Вы идёте на восток");
+                            f1.setText("вы идёте на восток");
 
-
-
+                        } catch (ArrayIndexOutOfBoundsException ext) {
+                            System.out.println("Вы не можете идти в ту сторону");
+                        }
 
 
                     } });
                 r.addActionListener(new ActionListener() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
-                        System.out.println("Вы идёте на запад");
-                        f1.setText("вы идёте на запад");
-                        int x=playerPositionX;
-                        int y=playerPositionY;
-                        game.data1[y][x] = "...";
-                        game.data1[y][x+1] = ".x.";
-                        x++;
-                        playerPositionX=x;
+                    public void actionPerformed(ActionEvent e) throws ArrayIndexOutOfBoundsException {
+                        try {
+                        //int x=playerPositionX;
+                        //int y=playerPositionY;
+                        //game.data1[y][x] = "...";
+                        //game.data1[y][x+1] = ".x.";
+                        game.playerPositionX++;
                         game.mapPrinter.printMap();
+                        //playerPositionX=x;
+                            System.out.println("Вы идёте на запад");
+                            f1.setText("вы идёте на запад");
+
+                        } catch (ArrayIndexOutOfBoundsException ext) {
+                            System.out.println("Вы не можете идти в ту сторону");
+                        }
+
                     } });
 
                 lu.addActionListener(new ActionListener() {
