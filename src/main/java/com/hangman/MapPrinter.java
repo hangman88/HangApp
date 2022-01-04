@@ -16,16 +16,44 @@ public class MapPrinter {
 
     public void printMap () {
 
-        int i, m;
-        for(m=0;m < game.data1.length;m++) {
-            for (i = 0; i < game.data1[m].length; i++) {
-                System.out.print("|" + game.data1[m][i]);
+//--------------------------------------------------
+
+
+            game.storeCell = Arrays.copyOf(game.mapTest, game.mapTest.length);
+            game.storeCell[game.playerPositionY][game.playerPositionX] = ".x.";
+            System.out.print("X: "+game.playerPositionX+" ");
+            System.out.println("Y: "+game.playerPositionY);
+            //String storeCell = game.data1[y][x];
+            //game.data1[y][x] = storeCell;
+            //game.data1[y][x] = ".x.";
+
+
+
+//--------------------------------------------------
+
+            int i, m;
+            for (m = 0; m < game.storeCell.length; m++) {
+            for (i = 0; i < game.storeCell[m].length; i++) {
+                System.out.print("|" + game.storeCell[m][i]);
             }
             System.out.print("|");
             System.out.println();
-        }
+            }
+/*
+            for (m = 0; m < game.mapTest.length; m++) {
+                for (i = 0; i < game.mapTest[m].length; i++) {
+                    System.out.print("|" + game.mapTest[m][i]);
+                }
+                System.out.print("|");
+                System.out.println();
+            }
+*/
+            System.out.println("---------------------");
 
-        System.out.println("---------------------");
+
+
+
+
     }
 
 

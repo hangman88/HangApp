@@ -3,7 +3,8 @@ package main.java.com.hangman;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Place {
+public class
+Place {
 
     int locId;  // локации Id нумеруются от 000 000 000 000, где каждая пара - привязка к области/региону/месту
     int x;
