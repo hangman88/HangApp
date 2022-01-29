@@ -86,17 +86,11 @@ public class Window extends JFrame{
                     @Override
                     public void actionPerformed(ActionEvent e) throws ArrayIndexOutOfBoundsException {
                         try{
-                        //int x=playerPositionX;
-                        //int y=playerPositionY;
-                        //game.data1[y-1][x] = ".x.";
-                        //y--;
-
                         game.playerPositionY--;
                         game.mapPrinter.printMap();
                         //playerPositionY=y;
                         System.out.println("Вы идёте на север");
                         f1.setText("вы идёте на север");
-
                         } catch (ArrayIndexOutOfBoundsException ext) {
                             System.out.println("Вы не можете идти в ту сторону");
                         }
@@ -109,10 +103,7 @@ public class Window extends JFrame{
                         try {
                             game.playerPositionY++;
                             game.mapPrinter.printMap();
-                            //int x = game.playerPositionX;
-                            //int y = game.playerPositionY;
-                            //y++;
-                            //game.playerPositionY = y;
+
 
 
                             System.out.println("Вы идёте на юг");
@@ -178,7 +169,7 @@ public class Window extends JFrame{
                         System.out.println("Вы спускаетесь ниже");
                         f1.setText("вы спускаетесь ниже");
                         //game.inventoryItems.add(game.allItems.get(1)); // эта строчка добавляла предмет в инвентарь для теста. удалить чуть позже
-                        game.onGroungLoc.add(game.allItems.get(1));
+                        game.onGroundLoc.add(game.allItems.get(1));
                         checkGround();
                     } });
 
@@ -199,10 +190,14 @@ public class Window extends JFrame{
                     onGroundBut.get(i).addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            game.inventoryItems.add(game.onGroungLoc.get(lisi)); //0, а размер массива 1
-                            System.out.println("Вы подняли "+game.onGroungLoc.get(lisi).name);
-                            game.onGroungLoc.remove(lisi); //0, а размер массива 1
-                            checkGround();
+                            if (game.inventoryItems.size() <= 7) {
+                                game.inventoryItems.add(game.onGroundLoc.get(lisi)); //0, а размер массива 1
+                                System.out.println("Вы подняли " + game.onGroundLoc.get(lisi).name);
+                                game.onGroundLoc.remove(lisi); //0, а размер массива 1
+                                checkGround();
+                            } else {
+                                System.out.println("Вы не можете нести больше");
+                            }
                         }
                     });
                 }
@@ -215,12 +210,12 @@ public class Window extends JFrame{
 
             public void checkGround() {
                     for (int i = 0; i < 8; i++) {
-                        if (game.onGroungLoc.size() < (i+1)) {
+                        if (game.onGroundLoc.size() < (i+1)) {
                             onGroundBut.get(i).setEnabled(false);
                             onGroundBut.get(i).setText("Пусто");
                         } else { // если предмета нет, то сообщит о том, что его нет.
                             onGroundBut.get(i).setEnabled(true);
-                            onGroundBut.get(i).setText(game.onGroungLoc.get(i).name);
+                            onGroundBut.get(i).setText(game.onGroundLoc.get(i).name);
                         }
                     }
             }

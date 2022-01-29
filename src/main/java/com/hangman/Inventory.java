@@ -109,6 +109,9 @@ public class Inventory extends JFrame{
                 itBtn.get(i).setText(window.game.inventoryItems.get(i).name);
             }
         }
+
+
+
     }
 
 

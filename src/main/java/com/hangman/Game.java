@@ -2,37 +2,37 @@ package main.java.com.hangman;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
 public class Game {
 
-    int playerPositionX=0;
-    int playerPositionY=0;
+     static String wkonsol;
 
-    public MapPrinter mapPrinter;
+     int playerPositionX=0;
+     int playerPositionY=0;
+
+     public MapPrinter mapPrinter;
 
      public List<Item> allItems = new ArrayList<>(); //массив Все предметы
 
-
-
-    public List<Place> somePlace = new ArrayList<>();
+     public List<Place> somePlace = new ArrayList<>();
     //List<List<Place>> allPlaces = new ArrayList<>(); //массив Все локации
 
      public List<Item> inventoryItems = new ArrayList<>(); //массив предметы инвентаря
-     public List<Item> onGroungLoc = new ArrayList<>();// ВРЕМЕННЫЙ массив предметы на земле локации (будет перенесён и привязан к конкретной локации)
-
-    static String wkonsol;
+     public List<Item> onGroundLoc = new ArrayList<>();// ВРЕМЕННЫЙ массив предметы на земле локации (будет перенесён и привязан к конкретной локации)
 
 
+
+     String[][] storeCell = new String[7][7];
      String[][] mapTest={
             {"...","...",".Æ.","...","...","...","..."},
             {"...","...","...","...","...","..╕","..╕"},
             {"...","...",".◘.","...",".Æ.","...","..╕"},
             {".Æ.","...","...","...","...","..╕","..╕"},
             {"...","...","...","...","...","..╕","..."},
+            {"...","...","..Æ","...","...","...","..."},
             {"...","...","..Æ","...","...","...","..."}};
-    String[][] storeCell;
+
+
 
 
 
@@ -40,7 +40,7 @@ public class Game {
 
 
         // ----------Создаем все предметы и заполняем ними массив "все предметы"
-         // ItemCreator itemCreator = new ItemCreator((this));
+
         new ItemCreator(this).fillItemMassive();
 
         // ----------Создаем все локации и заполняем ними массив "все локации"
@@ -54,10 +54,6 @@ public class Game {
         // ----------Создаем тестовую карту в консоли
         mapPrinter = new MapPrinter(this);
         mapPrinter.printMap();
-
-
-
-
 
 
 
